@@ -1,3 +1,47 @@
-row{
+
+
+h1{
     font-weight: em;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: green;
+    text-align: center;
 }
+
+a:visited a:link{
+    color: white;
+}
+
+.product-title{
+    color: black;
+}
+
+.product-price{
+    text-align: right;
+}
+
+.product-display{
+    padding-top: 10px;
+    border: 1px solid black;
+    background: lightblue;
+    max-width: 100%;
+    height: auto;
+    width: auto/9;
+}
+
+.product-thumbnail{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+.product-info{
+    
+}
+
