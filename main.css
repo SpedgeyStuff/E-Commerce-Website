@@ -1,13 +1,23 @@
 body{
     background-color: orange;
-    background: -moz-linear-gradient(top, rgba(255, 117, 43, 1) 0%, rgba(255, 117, 43, 0.75) 59%, rgba(0, 0, 0, 0) 100%) fixed, 
+    background: -moz-linear-gradient(top, 
+    rgba(244, 126, 24, 0.95) 25%, 
+    rgba(244, 126, 24, 0.75) 60%, 
+    rgba(0, 0, 0, 0) 100%) 
+    fixed, /* Adding "fixed" property ensures the gradient doesn't repeat */
     url("./img/background.png");
     background: -webkit-gradient(linear, left top, left bottom, 
-    color-stop(0%, rgba(255, 117, 43, 1)), 
-    color-stop(59%, rgba(255, 79, 35, 0.75)), 
-    color-stop(100%, rgba(0, 0, 0, 0))) fixed, 
+    color-stop(25%, rgba(244, 126, 24, 0.95)), 
+    color-stop(60%, rgba(244, 126, 24, 0.75)), 
+    color-stop(100%, rgba(0, 0, 0, 0))) 
+    fixed, /* Adding "fixed" property ensures the gradient doesn't repeat */
     url("./img/background.png");
-    background: linear-gradient(to bottom, rgba(255, 117, 43, 1) 0%, rgba(255, 117, 43, 0.75) 59%, rgba(0, 0, 0, 0) 100%) fixed, url("./img/background.png");
+    background: linear-gradient(to bottom, 
+    rgba(244, 126, 24, 0.95) 25%, 
+    rgba(244, 126, 24, 0.75) 60%, 
+    rgba(0, 0, 0, 0) 100%) 
+    fixed, /* Adding "fixed" property ensures the gradient doesn't repeat */ 
+    url("./img/background.png");
 }
 
 h1{
@@ -25,16 +35,105 @@ a:visited a:link{
 }
 
 .logo{
-    padding-bottom: 10px;
     border: 0;
+    margin: 30px;
+    margin-left: 0px;
+    margin-top: 15px;
+    max-width: 100%;
+    height: auto;
 }
 
 .site-banner{
-    background-image: url("./img/banner-dc.jpg");
+    background-image: url("./img/banner-marvel.jpg");
     background-color: #cccccc;
-    display: flex;
-    align-items: flex-start;
-    height:250px;
+    background-size: 100% auto;
+    border-style: solid;
+    border-width: 0px 0px 5px 0px;  /* top > right > bottom > left (clockwise winding) */
+    border-color: black;
+    display: flex;                  /* Makes contents fit dynamically inside parent container */
+    align-items: flex-start;        /* Sets containing items to align towards top left */
+    height:auto;
+}
+
+.site-nav-bar{
+    background: rgba(32, 70, 164, 1);
+    height: auto;                   /* Height auto so it encapsulates the nav buttons*/
+    border-style: solid;
+    border-width: 0px 0px 5px 0px;  /* top > right > bottom > left (clockwise winding) */
+    border-color: black;
+}
+
+.nav-item{
+    margin: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* TODO: Make the carousel work on small screens
+Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+    .carousel-caption > h5{ 
+        font-size: 1em;
+    }
+    
+    .carousel-caption > p{ 
+        font-size: 0.5em;
+    }
+}
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {}
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {}
+
+.carousel{
+    overflow:hidden;
+    width: 100%; 
+    height: auto;
+    max-height: 500px;
+}
+
+.carousel-item{
+    height: auto;
+    max-height: 500px;
+}
+
+
+.carousel-caption{
+    top: 80%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: white;
+    font-weight: em;
+    text-shadow: 0px 0px 10px black;
+}
+
+.carousel-caption > h5{ 
+    font-size: 2em;
+}
+
+.carousel-caption > p{ 
+    font-size: 1.25em;
+}
+
+.carousel-row{
+    margin-top: 10px;
+    border-width: 5px;
+    border-color: black;
+    border-style: solid;
+}
+
+.slideshow-img{
+    object-fit: cover;
+    height: inherit;
+    width: auto;
 }
 
 .product-info{
@@ -49,15 +148,19 @@ a:visited a:link{
 
 .product-price{
     text-align: right;
+    font-weight: bold;
+    color: red;
 }
 
 .product-display{
     padding-top: 10px;
-    border: 1px solid black;
-    background: lightblue;
+    border: 5px solid black;
+    background: white;
     max-width: 100%;
     height: auto;
     width: auto/9;
+    margin: 10px;
+    
 }
 
 .product-thumbnail{
@@ -67,7 +170,6 @@ a:visited a:link{
     padding-right: 10px;
     max-width: 100%;
     height: auto;
-    width: auto;
 }
 
 .product-info{
