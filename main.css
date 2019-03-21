@@ -84,6 +84,10 @@ a:visited a:link {
     max-height: 500px;
 }
 
+.carousel-inner{
+    max-height: inherit;
+}
+
 /* 277 px height for the smallest*/
 .carousel-item {
     height: auto;
