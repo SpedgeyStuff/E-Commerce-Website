@@ -9,38 +9,39 @@ if (isset($_SESSION['login_id'])) {
 }
 //Register progess start, if user press the signup button
 if (isset($_POST['signUp'])) {
-    if (empty($_POST['fullName']) || empty($_POST['email']) || empty($_POST['newPassword'])) {
-        echo "Please fill up all the required field.";
+    if (empty($_POST['forename']) || empty($_POST['surname']) || empty($_POST['email']) || empty($_POST['newPassword'])) {
+        echo "Please complete all required fields.";
     } else {
-            $fullName = $_POST['fullName'];
-            $email = $_POST['email'];
-            $password = $_POST['newPassword'];
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            // Make a connection with MySQL server.
-            include('config.php');
-            $sQuery = "SELECT id from account where email=? LIMIT 1";
-            $iQuery = "INSERT Into account (fullName, email, password) values(?, ?, ?)";
-            // To protect MySQL injection for Security purpose
-            $stmt = $conn->prepare($sQuery);
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $stmt->bind_result($id);
-            $stmt->store_result();
-            $rnum = $stmt->num_rows;
-            if ($rnum == 0) { //if true, insert new data
-                $stmt->close();
-
-                $stmt = $conn->prepare($iQuery);
-                $stmt->bind_param("sss", $fullName, $email, $hash);
-                if ($stmt->execute()) {
-                    echo 'Register successfully, Please login with your login details';
-                }
-            } else {
-                echo 'Someone already register with this email address.';
-            }
+        $forename = $_POST['forename'];
+        $surname = $_POST['surname'];
+        $email = $_POST['email'];
+        $password = $_POST['newPassword'];
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        // Make a connection with MySQL server.
+        include('config.php');
+        $sQuery = "SELECT id from account where email=? LIMIT 1";
+        $iQuery = "INSERT Into account (forename, surname, email, password) values(?, ?, ?, ?)";
+        // To protect MySQL injection for Security purpose
+        $stmt = $conn->prepare($sQuery);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->bind_result($id);
+        $stmt->store_result();
+        $rnum = $stmt->num_rows;
+        if ($rnum == 0) { //if true, insert new data
             $stmt->close();
-            $conn->close(); // Closing database Connection
+
+            $stmt = $conn->prepare($iQuery);
+            $stmt->bind_param("sss", $forename, $surname, $email, $hash);
+            if ($stmt->execute()) {
+                echo 'Register successfully, Please login with your login details';
+            }
+        } else {
+            echo 'Someone already register with this email address.';
         }
+        $stmt->close();
+        $conn->close(); // Closing database Connection
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -59,11 +60,16 @@ if (isset($_POST['signUp'])) {
             <div class="rlform-box">
                 <div class="rlform-box-inner">
                     <form method="post" oninput='validatePassword()'>
-                        <p>Let's create your account</p>
+                        <p>Create your account</p>
 
                         <div class="rlform-group">
-                            <label>Full Name</label>
-                            <input type="text" name="fullName" class="rlform-input" required>
+                            <label>Forename</label>
+                            <input type="text" name="forename" class="rlform-input" required>
+                        </div>
+
+                        <div class="rlform-group">
+                            <label>Surname</label>
+                            <input type="text" name="surname" class="rlform-input" required>
                         </div>
 
                         <div class="rlform-group">
