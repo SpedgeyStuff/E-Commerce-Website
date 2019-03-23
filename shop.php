@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<?php include("functions/functions.php");?>
+
 <html>
 
 <head>
@@ -14,7 +16,7 @@
 <body>
 
     <!-- Banner -->
-    <div class="container-fluid">
+    <div class="container-fluid header">
 
         <!-- Logo -->
         <div class="row site-banner">
@@ -69,11 +71,11 @@
                     </div>
                 </div>
                 <div class="sidebar-section">
+                    <!-- TODO: might need to remove "data-toggle="button"" IN PHP FUNCTIONS ECHO STATEMENT-->
                     <div class="sidebar-heading"> Filter By Brand: </div>
                     <div class="row">
                         <div class="col-sm-12 btn-group-vertical">
-                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Marvel</button>
-                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">DC</button>
+                            <?php getBrands(); ?>
                         </div>
                     </div>
                 </div>
@@ -81,10 +83,7 @@
                     <div class="sidebar-heading"> Filter By Product: </div>
                     <div class="row">
                         <div class="col-sm-12 btn-group-vertical">
-                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Comics</button>
-                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Graphic Novels</button>
-                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Action Figures</button>
-                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Funko Pops</button>
+                            <?php getCategories(); ?>
                         </div>
                     </div>
                 </div>
@@ -95,10 +94,14 @@
 
             </div>
         </div>
-    </div>
-    </div>
-
-    <!--FIXME: JavaScript may not be working properly?-->
+	</div>
+	
+	<!-- Footer -->
+    <div class="container-fluid footer" style="background: black;">
+        <h2 style = "text-align: center; color:white; padding:30px;"> &copy; 2019 by Daniel McKinley for E-Commerce module at City University London </h2>
+	</div>
+	
+    <!-- FIXME: JavaScript may not be working properly?-->
     <script src="dist/js/jquery-3.0.0.slim.min.js"></script>
     <script src="dist/js/bootstrap.js"></script>
 </body>
