@@ -34,7 +34,7 @@
                         <a class="nav-link active" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Shop</a>
+                        <a class="nav-link active" href="./shop.php">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">About</a>
@@ -47,21 +47,60 @@
         </div>
     </div>
 
-    <div class="container page-content">
-        <div class="row">
-            <div class="col-sm-3 sidebar-wrapper" style="background-color: blue; height: 200px;">
+    <div class="container page-content bold-border rounded">
+        <div class="row shop-wrapper">
+            <!-- Sidebar -->
+            <div class="col-sm-3 sidebar-wrapper">
+                <!-- Search Box -->
+                <div class="sidebar-section">
+                    <div class="sidebar-heading"> Search Our Products: </div>
+                    <div class="form-group">
+                        <form method="get" action="results.php" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class=col-sm-8>
+                                    <input type="text" class="form-control" name="user_query"
+                                        placeholder="Type here..." />
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="submit" class="btn btn-primary" name="search" value="Go" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-heading"> Filter By Brand: </div>
+                    <div class="row">
+                        <div class="col-sm-12 btn-group-vertical">
+                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Marvel</button>
+                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">DC</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-heading"> Filter By Product: </div>
+                    <div class="row">
+                        <div class="col-sm-12 btn-group-vertical">
+                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Comics</button>
+                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Graphic Novels</button>
+                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Action Figures</button>
+                            <button type="button" data-toggle="button" class="btn btn-primary btn-block">Funko Pops</button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-            <div class="col-sm-9 product-display-wrapper" style="background-color: red; height: 200px;">
+            <!-- Product display area-->
+            <div class="col-sm-9 product-display-wrapper">
 
             </div>
         </div>
     </div>
-
+    </div>
 
     <!--FIXME: JavaScript may not be working properly?-->
     <script src="dist/js/jquery-3.0.0.slim.min.js"></script>
     <script src="dist/js/bootstrap.js"></script>
 </body>
 
-</html> 
+</html>
