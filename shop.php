@@ -98,6 +98,8 @@
                         <div class="col-sm-9">
                             <div class="row">
                                 <?php getProducts(); ?>
+                                <?php getProductsByCategory(); ?>
+                                <?php getProductsByBrand()?>
                             </div>
                         </div>
                     </div>

@@ -177,8 +177,8 @@ body {
     bottom: 0;
     height: auto;
 }
-
-.product-title {
+ 
+.product-title > a{
     color: black;
     font-weight: bold;
     padding: 5px 0px 5px 0px;
@@ -190,6 +190,7 @@ body {
 }
 
 .price-text {
+    color: black;
     font-weight: bold;
     font-size: 1.4em;
 }
@@ -241,7 +242,7 @@ p.product-detail-description{
 .product-detail-price{
     position: absolute;
     bottom: 0;
-    width: 9%;
+    width: 95%;
 }
 
 
