@@ -54,14 +54,16 @@ function getProducts()
         $product_image = $product_row['image'];
 
         echo " 
-        <div class='col-xs-6 col-sm-3 col-md-2 column rounded product-box'>
+        <div class='col-xs-6 col-sm-3 column rounded'>
+        <div class='product-box'>
         <a href='#' class='thumbnail'>
             <img class='product-thumbnail img-responsive' src='admin/product_images/$product_image'>
         </a>
-        <div class='product-title'>$product_name</div>
+        <div class='product-title'><a href='#'>$product_name</a></div>
         <div class='product-price'>
             <a href='#' class='btn btn-primary btn-sm float-right'>BUY</a>
-            <div class='price-text'>£2.99</div>
+            <div class='price-text'>£$product_price</div>
+        </div>
         </div>
     </div>";
 

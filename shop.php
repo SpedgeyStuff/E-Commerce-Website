@@ -91,21 +91,23 @@
             </div>
             <!-- Product display area-->
             <div class="col-sm-9 product-display-wrapper">
-				<?php getProducts(); ?>
+                <div class="row">
+                    <?php getProducts(); ?>
+                </div>
             </div>
         </div>
-	</div>
-	
-	<!-- Footer -->
-	<div class="footer">
-		<div class="container-fluid">
-			<h2 style="text-align: center; color:white;"> &copy; 2019 by Daniel McKinley for
-				E-Commerce at
-				City University London
-			</h2>
-		</div>
-	</div>
-	
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container-fluid">
+            <h2 style="text-align: center; color:white;"> &copy; 2019 by Daniel McKinley for
+                E-Commerce at
+                City University London
+            </h2>
+        </div>
+    </div>
+
     <!-- FIXME: JavaScript may not be working properly?-->
     <script src="dist/js/jquery-3.0.0.slim.min.js"></script>
     <script src="dist/js/bootstrap.js"></script>
