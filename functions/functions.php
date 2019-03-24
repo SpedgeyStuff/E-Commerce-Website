@@ -54,23 +54,22 @@ function getProducts()
         $product_image = $product_row['image'];
 
         echo " 
-        <div class='col-xs-6 col-sm-3 column rounded'>
-        <div class='product-box'>
-        <a href='#' class='thumbnail'>
-            <img class='product-thumbnail img-responsive' src='admin/product_images/$product_image'>
-        </a>
-        <div class='product-title'><a href='#'>$product_name</a></div>
-        <div class='product-price'>
-            <a href='#' class='btn btn-primary btn-sm float-right'>BUY</a>
-            <div class='price-text'>£$product_price</div>
-        </div>
-        </div>
-    </div>";
-
-        /* TODO: used later
-        $product_keywords = $product_row['keywords'];
-        $product_description = $product_row['description'];
-        */
+        <div class='col-xs-6 col-sm-4 col-md-4 col-lg-3 my-md-1'>
+            <div class='product-box rounded'>
+                <div>
+                    <a href='details.php?product_id=$product_id' class='thumbnail'>
+                        <img class='product-thumbnail img-responsive' src='admin/product_images/$product_image'>
+                    </a>
+                </div>
+                <div>
+                    <div class='product-title'><a href='details.php?product_id=$product_id'>$product_name</a></div>
+                    <div class='product-price'>
+                        <a href='index.php?product_id=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
+                        <div class='price-text'>£$product_price</div>
+                    </div>
+                </div>
+            </div>
+        </div>";
     }
 }
 

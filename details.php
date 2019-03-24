@@ -58,49 +58,41 @@
 
             <div id="page-content">
                 <div class="container bold-border rounded shop-wrapper">
-                    <div class="row">
-                        <!-- Sidebar -->
-                        <div class="col-sm-3 sidebar-wrapper">
-                            <!-- Search Box -->
-                            <div class="sidebar-section">
-                                <div class="sidebar-heading"> Search Our Products: </div>
-                                <div class="form-group">
-                                    <form method="get" action="results.php" enctype="multipart/form-data">
-                                        <input type="submit" class="btn btn-primary float-right" name="search"
-                                            value="Go" />
-                                        <div style="overflow: hidden; padding-right: .5em;">
-                                            <input type="text" class="form-control" name="user_query"
-                                                placeholder="Type here..." />
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="sidebar-section">
-                                <!-- TODO: might need to remove "data-toggle="button"" IN PHP FUNCTIONS ECHO STATEMENT-->
-                                <div class="sidebar-heading"> Filter By Brand: </div>
-                                <div class="row">
-                                    <div class="col-sm-12 btn-group-vertical">
-                                        <?php getBrands(); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sidebar-section">
-                                <div class="sidebar-heading"> Filter By Product: </div>
-                                <div class="row">
-                                    <div class="col-sm-12 btn-group-vertical">
-                                        <?php getCategories(); ?>
-                                    </div>
-                                </div>
-                            </div>
+                    
+                        <?php
+                        if(isset($_GET['product_id'])){
+                            $product_id = $_GET['product_id'];          // create local variable of the user's chosen product ID
+                        }
 
-                        </div>
-                        <!-- Product display area-->
-                        <div class="col-sm-9">
-                            <div class="row">
-                                <?php getProducts(); ?>
+                        $get_products = "select * from products where product_id='$product_id'";    // get product from database
+                        $run_products = mysqli_query($con, $get_products);
+
+                        while ($product_row = mysqli_fetch_array($run_products)) {
+                            $product_id = $product_row['product_id'];
+                            $product_brand = $product_row['brand'];
+                            $product_name = $product_row['name'];
+                            $product_price = $product_row['price'];
+                            $product_image = $product_row['image'];
+                            $product_keywords = $product_row['keywords'];
+                            $product_description = $product_row['description'];
+
+                            echo " 
+                            <div class='row product-detail-box'>
+                                <div class='col-sm-4 column'>
+                                    <img class='product-detail-image thin-border img-responsive rounded' src='admin/product_images/$product_image'>
+                                </div>
+                                <div class='col-sm-8 product-detail-text-wrapper'>
+                                    <h1 class='product-detail-title'>$product_name</h1>
+                                    <p class='product-detail-description'>$product_description</p>
+                                    <div class='product-price product-detail-price'>
+                                        <a href='index.php?product_id=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
+                                        <h2 class='price-text'>£$product_price</h2>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                            ";}
+                            ?>
+                    
                 </div>
             </div>
         </div>
@@ -120,6 +112,5 @@
     <script src="dist/js/jquery-3.0.0.slim.min.js"></script>
     <script src="dist/js/bootstrap.js"></script>
 </body>
-
 
 </html>
