@@ -26,7 +26,6 @@
                             <img class="logo" src="img/logo.png">
                         </a>
                     </div>
-
                     <div class="col-sm-4 basket-wrapper rounded">
                         <?php basket(); ?>
                         <b> Shopping Basket </b>
@@ -95,11 +94,45 @@
                         </div>
                         <!-- Product display area-->
                         <div class="col-sm-9">
-                            <?php getIp(); ?>
                             <div class="row">
-                                <?php getProducts(); ?>
-                                <?php getProductsByCategory(); ?>
-                                <?php getProductsByBrand() ?>
+                                <?php
+                                global $con;    // gives access within function scope
+
+                                if(isset($_GET['search'])){
+
+                                $search_query = $_GET['user_query'];
+
+                                $get_products = "select * from products where keywords like '%$search_query%'";
+                                $run_products = mysqli_query($con, $get_products);
+
+                                while ($product_row = mysqli_fetch_array($run_products)) {
+                                    $product_id = $product_row['product_id'];
+                                    $product_category = $product_row['category'];
+                                    $product_brand = $product_row['brand'];
+                                    $product_name = $product_row['name'];
+                                    $product_price = $product_row['price'];
+                                    $product_image = $product_row['image'];
+
+                                    echo " 
+                                            <div class='col-xs-6 col-sm-4 col-md-4 col-lg-3 my-md-1'>
+                                                <div class='product-box rounded'>
+                                                    <div>
+                                                        <a href='details.php?product_id=$product_id' class='thumbnail'>
+                                                            <img class='product-thumbnail img-responsive' src='admin/product_images/$product_image'>
+                                                        </a>
+                                                    </div>
+                                                    <div>
+                                                        <div class='product-title'><a href='details.php?product_id=$product_id'>$product_name</a></div>
+                                                        <div class='product-price'>
+                                                            <a href='index.php?product_id=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
+                                                            <div class='price-text'>£$product_price</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>";
+                                }
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
