@@ -13,7 +13,7 @@
 <body>
 
     <div class="container page-content">
-        <form class="bold-border table-wrapper" action="insert_product.php" method="post" enctype="multipart/form-data">
+        <form class="bold-border table-wrapper" action="add_product.php" method="post" enctype="multipart/form-data">
             <table class="table">
                 <tr align="center">
                     <td colspan="8">
@@ -23,11 +23,11 @@
 
                 <tr>
                     <td align="right">Product Title:</td>
-                    <td><input type="text" name="product_title" /></td>
+                    <td><input type="text" name="product_title" size="90%" required/></td>
                 </tr>
                 <tr>
                     <td align="right">Product Category:</td>
-                    <td><select name="product_category">
+                    <td><select name="product_category" required>
                             <option>Select a Category</option>
 
                             <?php
@@ -51,7 +51,7 @@
                 </tr>
                 <tr>
                     <td align="right">Product Brand:</td>
-                    <td><select name="product_brand">
+                    <td><select name="product_brand" required>
                             <option>Select a Brand</option>
 
                             <?php
@@ -82,11 +82,11 @@
                 </tr>
                 <tr>
                     <td align="right">Product Keywords:</td>
-                    <td><input type="text" name="product_keywords" /></td>
+                    <td><input type="text" name="product_keywords" size="90%"/></td>
                 </tr>
                 <tr>
                     <td align="right">Product Price:</td>
-                    <td><input type="text" name="product_price" /></td>
+                    <td><input type="text" name="product_price" required /></td>
                 </tr>
                 <tr align="right">
                     <td colspan="8"><input type="submit" name="insert_post" value="Submit" /></td>
@@ -98,3 +98,37 @@
 </body>
 
 </html> 
+
+<?php 
+
+if(isset($_POST['insert_post'])){   // "insert_post" from submit button
+    // create local variables and capture the user data from the fields
+    $product_title = $_POST['product_title'];
+    $product_category = $_POST['product_category'];
+    $product_brand = $_POST['product_brand'];
+    $product_price = $_POST['product_price'];
+    $product_description = $_POST['product_description'];
+    $product_keywords = $_POST['product_keywords'];
+    // ^ same but for image capturing the file name and setting a tmp_name for the server
+    $product_image = $_FILES['product_image']['name'];
+    $product_image_tmp = $_FILES['product_image']['tmp_name']; 
+
+    //move_uploaded_file($product_image_tmp, "product_images/$product_image");     
+    if (move_uploaded_file($product_image_tmp, __DIR__.'/product_images/'.$product_image)) {
+    } else {
+       echo "<script>alert('File was not moved to admin/product_images')</script>";
+    }
+
+    $product_data = "insert into products (name, category, brand, price, description, keywords, image) values 
+    ('$product_title', '$product_category', '$product_brand','$product_price','$product_description','$product_keywords','$product_image')";
+
+    $insert_product = mysqli_query($con, $product_data);
+
+    if(insert_product){
+        echo "<script>alert('Product has been added to the database.')</script>";
+        echo "<script>window.open('add_product.php','_self')</script>";
+    }
+
+}
+
+?>

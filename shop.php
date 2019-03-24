@@ -91,7 +91,7 @@
             </div>
             <!-- Product display area-->
             <div class="col-sm-9 product-display-wrapper">
-
+				<?php getProducts(); ?>
             </div>
         </div>
 	</div>
