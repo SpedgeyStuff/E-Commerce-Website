@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<?php include("functions/functions.php");?>
+<?php include("functions/functions.php"); ?>
 
 <html>
 
@@ -14,98 +14,102 @@
 </head>
 
 <body>
+    <div id="page-container">
+        <div id="content-wrap">
+            <!-- Banner -->
+            <div class="container-fluid">
 
-    <!-- Banner -->
-    <div class="container-fluid header">
+                <!-- Logo -->
+                <div class="row site-banner">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <a href="./index.html">
+                            <img class="logo" src="img/logo.png">
+                        </a>
+                    </div>
+                </div>
 
-        <!-- Logo -->
-        <div class="row site-banner">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                <a href="./index.html">
-                    <img class="logo" src="img/logo.png">
-                </a>
+                <!-- Nav Bar -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 site-nav-bar">
+                        <ul class="nav nav-pills nav-justified">
+                            <!-- nav-justified used instead of nav-fill since it makes all the buttons the same size , rather than ones with more text being longer, while still filling the row-->
+                            <li class="nav-item">
+                                <a class="nav-link active" href="./index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="./shop.php">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Login/Sign Up</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Nav Bar -->
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 site-nav-bar">
-                <ul class="nav nav-pills nav-justified">
-                    <!-- nav-justified used instead of nav-fill since it makes all the buttons the same size , rather than ones with more text being longer, while still filling the row-->
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./shop.php">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Login/Sign Up</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="container page-content bold-border rounded">
-        <div class="row shop-wrapper">
-            <!-- Sidebar -->
-            <div class="col-sm-3 sidebar-wrapper">
-                <!-- Search Box -->
-                <div class="sidebar-section">
-                    <div class="sidebar-heading"> Search Our Products: </div>
-                    <div class="form-group">
-                        <form method="get" action="results.php" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class=col-sm-8>
-                                    <input type="text" class="form-control" name="user_query"
-                                        placeholder="Type here..." />
-                                </div>
-                                <div class="col-sm-3">
-                                    <input type="submit" class="btn btn-primary" name="search" value="Go" />
+            <div id="page-content">
+                <div class="container bold-border rounded">
+                    <div class="row shop-wrapper">
+                        <!-- Sidebar -->
+                        <div class="col-sm-3 sidebar-wrapper">
+                            <!-- Search Box -->
+                            <div class="sidebar-section">
+                                <div class="sidebar-heading"> Search Our Products: </div>
+                                <div class="form-group">
+                                    <form method="get" action="results.php" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class=col-sm-8>
+                                                <input type="text" class="form-control" name="user_query" placeholder="Type here..." />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input type="submit" class="btn btn-primary" name="search" value="Go" />
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="sidebar-section">
-                    <!-- TODO: might need to remove "data-toggle="button"" IN PHP FUNCTIONS ECHO STATEMENT-->
-                    <div class="sidebar-heading"> Filter By Brand: </div>
-                    <div class="row">
-                        <div class="col-sm-12 btn-group-vertical">
-                            <?php getBrands(); ?>
+                            <div class="sidebar-section">
+                                <!-- TODO: might need to remove "data-toggle="button"" IN PHP FUNCTIONS ECHO STATEMENT-->
+                                <div class="sidebar-heading"> Filter By Brand: </div>
+                                <div class="row">
+                                    <div class="col-sm-12 btn-group-vertical">
+                                        <?php getBrands(); ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sidebar-section">
+                                <div class="sidebar-heading"> Filter By Product: </div>
+                                <div class="row">
+                                    <div class="col-sm-12 btn-group-vertical">
+                                        <?php getCategories(); ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Product display area-->
+                        <div class="col-sm-9 product-display-wrapper">
+                            <div class="row">
+                                <?php getProducts(); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-section">
-                    <div class="sidebar-heading"> Filter By Product: </div>
-                    <div class="row">
-                        <div class="col-sm-12 btn-group-vertical">
-                            <?php getCategories(); ?>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- Product display area-->
-            <div class="col-sm-9 product-display-wrapper">
-                <div class="row">
-                    <?php getProducts(); ?>
-                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div class="container-fluid">
-            <h2 style="text-align: center; color:white;"> &copy; 2019 by Daniel McKinley for
-                E-Commerce at
-                City University London
-            </h2>
-        </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <h2 style="text-align: center; color:white;"> &copy; 2019 by Daniel McKinley for
+                    E-Commerce at
+                    City University London
+                </h2>
+            </div>
+        </footer>
     </div>
 
     <!-- FIXME: JavaScript may not be working properly?-->
@@ -114,4 +118,4 @@
 </body>
 
 
-</html>
+</html> 
