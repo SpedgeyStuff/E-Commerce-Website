@@ -27,10 +27,11 @@
                         </a>
                     </div>
                     <div class="col-sm-4 basket-wrapper rounded">
+                        <?php basket(); ?>
                         <b> Shopping Basket </b>
-                        Total Items:
-                        Total Price:
-                        <a href="basket.php">Go to basket</a>
+                        Total Items: <?php total_items(); ?>
+                        Total Price: £<?php total_price(); ?>
+                        <a href="basket.php">View</a>
                     </div>
                 </div>
 
@@ -40,17 +41,17 @@
                         <ul class="nav nav-pills nav-justified">
                             <!-- nav-justified used instead of nav-fill since it makes all the buttons the same size , rather than ones with more text being longer, while still filling the row-->
                             <li class="nav-item">
-                                <a class="nav-link active" href="./index.html">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="./shop.php">Shop</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Login/Sign Up</a>
-                            </li>
+								<a class="nav-link active" href="./index.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" href="./shop.php">Shop</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" href="./about.html">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" href="./login.php">Login/Sign Up</a>
+							</li>
                         </ul>
                     </div>
                 </div>
@@ -58,25 +59,25 @@
 
             <div id="page-content">
                 <div class="container bold-border rounded shop-wrapper">
-                    
-                        <?php
-                        if(isset($_GET['product_id'])){
-                            $product_id = $_GET['product_id'];          // create local variable of the user's chosen product ID
-                        }
 
-                        $get_products = "select * from products where product_id='$product_id'";    // get product from database
-                        $run_products = mysqli_query($con, $get_products);
+                    <?php
+                    if (isset($_GET['product_id'])) {
+                        $product_id = $_GET['product_id'];          // create local variable of the user's chosen product ID
+                    }
 
-                        while ($product_row = mysqli_fetch_array($run_products)) {
-                            $product_id = $product_row['product_id'];
-                            $product_brand = $product_row['brand'];
-                            $product_name = $product_row['name'];
-                            $product_price = $product_row['price'];
-                            $product_image = $product_row['image'];
-                            $product_keywords = $product_row['keywords'];
-                            $product_description = $product_row['description'];
+                    $get_products = "select * from products where product_id='$product_id'";    // get product from database
+                    $run_products = mysqli_query($con, $get_products);
 
-                            echo " 
+                    while ($product_row = mysqli_fetch_array($run_products)) {
+                        $product_id = $product_row['product_id'];
+                        $product_brand = $product_row['brand'];
+                        $product_name = $product_row['name'];
+                        $product_price = $product_row['price'];
+                        $product_image = $product_row['image'];
+                        $product_keywords = $product_row['keywords'];
+                        $product_description = $product_row['description'];
+
+                        echo " 
                             <div class='row product-detail-box'>
                                 <div class='col-sm-4 column'>
                                     <img class='product-detail-image thin-border img-responsive rounded' src='admin/product_images/$product_image'>
@@ -85,14 +86,15 @@
                                     <h1 class='product-detail-title'>$product_name</h1>
                                     <p class='product-detail-description'>$product_description</p>
                                     <div class='product-price product-detail-price'>
-                                        <a href='index.php?product_id=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
+                                        <a href='shop.php?add_basket=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
                                         <h2 class='price-text'>£$product_price</h2>
                                     </div>
                                 </div>
                             </div>
-                            ";}
-                            ?>
-                    
+                            ";
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>
@@ -113,4 +115,4 @@
     <script src="dist/js/bootstrap.js"></script>
 </body>
 
-</html>
+</html> 
