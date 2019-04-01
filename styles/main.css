@@ -143,14 +143,10 @@ body {
 /* Basket Styling */
 
 .basket-wrapper{
-    border-width:3px;
+    border-width: 0px 0px 3px 3px;
     border-color: black;
     border-style: solid;
     background: whitesmoke;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 6;
 }
 
 /* Sidebar Styling */
@@ -258,7 +254,6 @@ table {
 
 .table-wrapper {
     background: whitesmoke;
-    margin: 5px;
 }
 
 /* Footer Styling*/
@@ -273,6 +268,7 @@ table {
 }
 
 #content-wrap{
+    
     padding-bottom: 2.5rem;
 }
 

@@ -45,7 +45,7 @@ function getProducts()
         if(!isset($_GET['brand'])){
             global $con;    // gives access within function scope
 
-            $get_products = "select * from products"; // "order by RAND() LIMIT 0, 6"
+            $get_products = "select * from products order by RAND() LIMIT 0, 6";
             $run_products = mysqli_query($con, $get_products);
 
             while ($product_row = mysqli_fetch_array($run_products)) {
@@ -67,7 +67,7 @@ function getProducts()
                         <div>
                             <div class='product-title'><a href='details.php?product_id=$product_id'>$product_name</a></div>
                             <div class='product-price'>
-                                <a href='shop.php?add_basket=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
+                                <a href='index.php?product_id=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
                                 <div class='price-text'>£$product_price</div>
                             </div>
                         </div>
@@ -110,7 +110,7 @@ function getProductsByCategory(){
                         <div>
                             <div class='product-title'><a href='details.php?product_id=$product_id'>$product_name</a></div>
                             <div class='product-price'>
-                                <a href='shop.php?product_id=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
+                                <a href='index.php?product_id=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
                                 <div class='price-text'>£$product_price</div>
                             </div>
                         </div>
@@ -154,7 +154,7 @@ function getProductsByBrand(){
                     <div>
                         <div class='product-title'><a href='details.php?product_id=$product_id'>$product_name</a></div>
                         <div class='product-price'>
-                            <a href='shop.php?product_id=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
+                            <a href='index.php?product_id=$product_id' class='btn btn-primary btn-sm float-right'>Add To Cart</a>
                             <div class='price-text'>£$product_price</div>
                         </div>
                     </div>
@@ -163,75 +163,6 @@ function getProductsByBrand(){
         }
     }
     }
-}
-
-function getIp() {
-    $ip = $_SERVER['REMOTE_ADDR'];
- 
-    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-        $ip = $_SERVER['HTTP_CLIENT_IP'];
-    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    }
- 
-    return $ip;
-}
-
-function basket(){
-    if(isset($_GET['add_basket'])){
-        global $con;    // gives access within function scope
-        $ip = getIp();
-        $product_id = $_GET['add_basket'];
-        $check_product = "select * from basket where ip_add='$ip' AND p_id='$product_id'";
-
-        $run_check = mysqli_query($con, $check_product);
-        if(mysqli_num_rows($run_check)>0){
-            echo "";
-        }
-        else {
-            $insert_product = "insert into basket (p_id, ip_add,qty) values ('$product_id','$ip','1')";
-            $run_products = mysqli_query($con, $insert_product);
-            echo "<script>window.open('shop.php','_self')</script>";    // refreshes page when item is added to basket
-        }
-    }
-}
-
-function total_items(){
-    if(isset($_GET['add_cart'])){
-        global $con;
-        $ip = getIp();
-        $get_items = "select * from basket where ip_add='$ip'";
-        $run_items = mysqli_query($con, $get_items);
-        $item_count = mysqli_num_rows($run_items);
-    }
-    else{
-        global $con;
-        $ip = getIp();
-        $get_items = "select * from basket where ip_add='$ip'";
-        $run_items = mysqli_query($con, $get_items);
-        $item_count = mysqli_num_rows($run_items);
-    }
-    echo $item_count;
-}
-
-function total_price(){
-    global $con;
-    $total = 0;
-    $ip = getIp();
-    $get_basket_items = "select * from basket where ip_add='$ip'";
-    $run_items = mysqli_query($con, $get_basket_items);
-    while($products=mysqli_fetch_array($run_items)){
-        $product_id = $products['p_id'];
-        $basket_products = "select * from products where product_id='$product_id'";
-        $run_price = mysqli_query($con, $basket_products);
-        while($p_price = mysqli_fetch_array($run_price)){
-            $product_price = array($p_price['price']);
-            $values = array_sum($product_price);
-            $total += $values;
-        }
-    }
-
-    echo $total;
 }
 
  
